@@ -29,7 +29,7 @@ A professional, all-in-one productivity hub designed to help you stay focused an
 
 | Desktop View | Dark Mode |
 | :--- | :--- |
-| ![Dashboard Screenshot](https://via.placeholder.com/400x250?text=Dashboard+View) | ![Dark Mode Screenshot](https://via.placeholder.com/400x250?text=Dark+Mode+View) |
+| ![Dashboard Screenshot]([https://via.placeholder.com/400x250?text=Dashboard+View](https://github.com/torikul1/Productivity-Dashboard/blob/main/light.png)) | ![Dark Mode Screenshot]([https://via.placeholder.com/400x250?text=Dark+Mode+View](https://github.com/torikul1/Productivity-Dashboard/blob/main/dark.png)) |
 
 ---
 *Created with ❤️ to boost productivity.*
