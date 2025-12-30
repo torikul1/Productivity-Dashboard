@@ -1,0 +1,512 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --bg-color: #f1f3f2;          /* Soft light gray */
+    --header-bg: #b8de87;        /* Your original green */
+    --sidebar-bg: #ffffff;
+    --card-bg: #ffffff;
+    --accent-color: #8fb35d;     /* Darker sage for hover/buttons */
+    --text-main: #2c3e50;        /* Slate blue-gray for text */
+    --divider-color: #e0e0e0;
+    --shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-main);
+    font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+}
+
+/* Header Section */
+.title {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    background-color: var(--header-bg);
+    height: 70px;
+    padding: 0 30px;
+    align-items: center;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+#name {
+    color: #2f4f4f; /* Dark Slate Gray */
+    font-size: 32px;
+    font-weight: 800;
+    letter-spacing: -1px;
+}
+
+.rightSection {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 20px;
+}
+
+/* Search Input */
+.sarch {
+    font-size: 15px;
+    border-radius: 20px;
+    border: 1px solid rgba(0,0,0,0.1);
+    padding: 8px 15px;
+    outline: none;
+    transition: 0.3s;
+}
+
+.sarch:focus {
+    width: 250px;
+    border-color: var(--accent-color);
+}
+
+#dateTime {
+    font-size: 16px;
+    font-weight: 600;
+    color: #444;
+}
+
+/* Theme Button */
+#themeButton {
+    font-size: 14px;
+    font-weight: bold;
+    border-radius: 8px;
+    padding: 8px 16px;
+    border: 1.5px solid #2f4f4f;
+    background: transparent;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+#themeButton:hover {
+    background-color: #2f4f4f;
+    color: white;
+}
+
+.divider {
+    height: 1px; /* Thinner is more modern */
+    width: 100vw;
+    background-color: var(--divider-color);
+}
+
+/* Main Layout */
+.firstBody {
+    display: flex;
+    height: calc(100vh - 70px);
+}
+
+/* Sidebar */
+.sidebar {
+    width: 240px;
+    background: var(--sidebar-bg);
+    padding: 30px 15px;
+    border-right: 1px solid var(--divider-color);
+}
+
+.sidebar h3 {
+    margin-left: 15px;
+    font-size: 14px;
+    text-transform: uppercase;
+    color: #888;
+    letter-spacing: 1px;
+}
+
+.sidebar ul {
+    list-style: none;
+    margin-top: 15px;
+}
+
+.sidebar li {
+    margin: 5px 0;
+    padding: 12px 15px;
+    font-weight: 500;
+    color: var(--text-main);
+    background-color: transparent;
+    transition: 0.2s;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border-radius: 8px;
+    margin-bottom: 5px;
+}
+
+.sidebar li:hover {
+  background-color: #f0f7e9;
+    padding-left: 20px; /* Subtle slide effect */
+    color: #8fb35d;
+}
+
+/* Content Grid */
+.mainContaint {
+    flex: 1;
+    padding: 30px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 25px;
+    overflow-y: auto;
+}
+
+
+/* Progress Bar Styling */
+.progress-container {
+    box-shadow: inset 0 1px 3px rgba(0,0,0,0.1);
+}
+
+.changeTheme .progress-container {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.changeTheme #goalStats {
+    color: #bbb;
+}
+
+#goalInput {
+    padding: 2px;
+    background: white;
+    color: black;
+}
+
+.changeTheme #goalInput {
+    background: rgba(0, 0, 0, 0.2);
+    color: white;
+    border-color: rgba(255, 255, 255, 0.3);
+}
+
+
+.card {
+    background: var(--card-bg);
+    padding: 25px;
+    border-radius: 15px;
+    box-shadow: var(--shadow);
+    display: flex;
+    flex-direction: column;
+    min-height: 450px;
+    border: 1px solid rgba(0,0,0,0.02);
+}
+
+.card h2 {
+    margin-bottom: 20px;
+    font-size: 22px;
+    border-left: 4px solid var(--header-bg);
+    padding-left: 10px;
+}
+
+/* Priority Pill Styles */
+.priority-pill {
+ font-size: 10px;
+    text-transform: uppercase;
+    font-weight: bold;
+    padding: 2px 8px;
+    border-radius: 12px;
+    margin-right: 12px;
+    min-width: 50px;
+    text-align: center;
+}
+
+/* 1. Fix the Card Size */
+.To-Do {
+    max-height: 600px;    /* Prevents it from going off the bottom of the screen */
+    max-width: 400px;     /* Prevents it from stretching too wide */
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;     /* Keeps the rounded corners clean */
+}
+
+/* 2. Fix the Task List Scroll */
+#taskList {
+    overflow-y: auto;     /* Vertical scroll if too many tasks */
+    overflow-x: hidden;   /* Strictly prevent horizontal stretching */
+    flex-grow: 1;
+    padding: 10px;
+    list-style: none;
+}
+
+/* 3. Fix the Text Inside the Tasks */
+.task-text {
+    white-space: normal;  /* Allows text to wrap to the next line */
+    word-break: break-word; /* Breaks very long words so they don't push the card wide */
+    overflow-wrap: break-word;
+    flex: 1;              /* Allows text to take up remaining space in the row */
+    margin-right: 10px;
+}
+
+.changeTheme #userGreeting {
+    color: #fff;
+}
+
+.changeTheme #weatherInfo {
+    color: #aaa;
+}
+
+.priority-high { background-color: #ffcccc; color: #cc0000; }
+.priority-medium { background-color: #fff3cd; color: #856404; }
+.priority-low { background-color: #d4edda; color: #155724; }
+
+/* Dark mode adjustments for pills */
+.changeTheme .priority-high { background-color: #b91c1c; color: white; }
+.changeTheme .priority-medium { background-color: #b45309; color: white; }
+.changeTheme .priority-low { background-color: #15803d; color: white; }
+
+/* Style for completed tasks */
+.task-text.completed {
+    text-decoration: line-through;
+    color: #888; /* Fade the text color */
+    opacity: 0.6;
+}
+
+/* Optional: Add a checkbox style */
+.todo-checkbox {
+    cursor: pointer;
+    margin-right: 10px;
+    width: 18px;
+    height: 18px;
+    accent-color: var(--header-bg);
+}
+
+/* Container for the input and button */
+.card.Todo {
+    display: flex;
+    flex-direction: column;
+}
+
+/* Specifically target the input and button container */
+.Todo div.input-group {
+    display: flex;
+    gap: 15px; /* This creates the gap you want */
+    margin-bottom: 20px; /* Space between the input area and the list below */
+}
+
+#taskInput {
+    flex: 1; /* Makes the input take up available space */
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    outline: none;
+}
+
+#addTaskBtn {
+    padding: 10px 20px;
+    background-color: var(--header-bg);
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+#addTaskBtn:hover {
+    background-color: var(--accent-color);
+    color: rgb(255, 255, 255);
+}
+
+#taskList li {
+    background-color: #f9f9f9;    /* Light background for the task tile */
+    margin-bottom: 12px;         /* This creates the GAP between tasks */
+    padding: 12px 15px;          /* Space inside the tile */
+    border-radius: 8px;          /* Rounded corners */
+    display: flex;               /* Helps align text and the delete button */
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05); /* Soft shadow for depth */
+    transition: transform 0.2s;
+    list-style: none;  
+    width: 100%;          /* Forces the row to match the card width */
+    box-sizing: border-box;          /* Removes the bullet point */
+}
+
+#taskList li:hover {
+    transform: translateX(5px);   /* Slight move when hovering */
+    background-color: #ffffff;
+}
+
+/* Style for the delete button inside the list */
+#taskList li button {
+    background: none;
+    border: none;
+    color: #e74c3c;
+    cursor: pointer;
+    font-size: 16px;
+    padding: 5px;
+}
+
+/* Notes Area */
+#notesArea {
+    flex: 1;
+    width: 100%;
+    padding: 15px;
+    border: 1.5px solid #eee; 
+    border-radius: 10px;
+    font-size: 15px;
+    outline: none;
+    resize: none;
+    background-color: #fdfdfd;
+    transition: 0.3s;
+}
+
+#notesArea:focus {
+    border-color: var(--header-bg);
+    box-shadow: 0 0 0 3px rgba(184, 222, 135, 0.2);
+}
+
+/* Pomodoro Specific */
+
+
+
+/* Container for the Pomodoro buttons */
+.button-container {
+    display: flex;
+    justify-content: center; /* Centers the buttons horizontally */
+    gap: 20px;               /* This creates the gap/game between the buttons */
+    margin-top: 10px;        /* Adds space between the timer numbers and buttons */
+}
+
+/* Enhancing button appearance */
+#startBtn, #resetBtn {
+    padding: 10px 25px;
+    font-weight: bold;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+    transition: transform 0.2s, background-color 0.3s;
+}
+
+#startBtn:hover, #resetBtn:hover {
+    transform: translateY(-2px); /* Slight lift effect on hover */
+}
+
+.timer {
+    font-size: 64px;
+    font-weight: 800;
+    margin: 30px 0;
+    padding: 20px;
+    background: rgba(0, 0, 0, 0.03); /* Very light box around the numbers */
+    border-radius: 15px;
+    color: #333;
+    text-align: center;
+    font-family: 'Courier New', Courier, monospace; /* Monospaced fonts stay centered better */
+    transition: all 0.3s ease;
+}
+
+.Pomodoro .button-container {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+}
+
+.Pomodoro button {
+    padding: 12px 25px;
+    font-weight: bold;
+    cursor: pointer;
+    border-radius: 10px;
+    border: none;
+    background-color: #f1f3f2;
+    color: var(--text-main);
+    transition: 0.3s;
+}
+
+
+.timer-modes button {
+    background-color: #f0f0f0;
+    border: 1px solid #ccc;
+    padding: 5px 15px;
+    border-radius: 20px;
+    font-size: 12px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.timer-modes button:hover {
+    background-color: var(--header-bg);
+    border-color: var(--accent-color);
+}
+
+/* Style for the active theme mode */
+.changeTheme .timer-modes button {
+    background-color: rgba(255, 255, 255, 0.1);
+    color: white;
+}
+/* --- Timer Theme Updates --- */
+
+/* When theme is changed, make the timer text white or light gray */
+.changeTheme .timer {
+    color: #ffffff;
+    background: rgba(255, 255, 255, 0.05);
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.2); /* Adds a subtle glow */
+}
+
+/* Make the buttons look better in the changed theme */
+.changeTheme .Pomodoro button {
+    background-color: rgba(255, 255, 255, 0.1); /* Semi-transparent white */
+    color: white;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.changeTheme .Pomodoro button:hover {
+    background-color: var(--header-bg); /* Keep your signature green for the hover */
+    color: #2c3e50;
+}
+
+/* Special fix for the Start button in Dark Theme */
+.changeTheme #startBtn {
+    background-color: var(--header-bg);
+    color: #2c3e50;
+    border: none;
+}
+
+#startBtn {
+    background-color: var(--header-bg);
+}
+
+#startBtn:hover {
+    background-color: var(--accent-color);
+    color: white;
+}
+
+#resetBtn:hover {
+    background-color: #e74c3c;
+    color: white;
+}
+
+/* Theme Toggle Support */
+.changeTheme {
+    background-color: #2c3e50 !important;
+    color: #ecf0f1 !important;
+}
+
+.changeTheme .card {
+    background-color: #34495e;
+    color: white;
+    border: none;
+}
+
+.changeTheme #notesArea {
+    background-color: #2c3e50;
+    color: white;
+    border-color: #456789;
+}
+/* When the theme is changed, make task list items visible */
+.changeTheme #taskList li {
+    background-color: rgba(255, 255, 255, 0.1); /* Semi-transparent white background */
+    color: #ffffff;                             /* White text for visibility */
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+/* Ensure the task text specifically is white */
+.changeTheme #taskList li span {
+    color: #ffffff;
+}
+
+/* Make the placeholder text in the search/input easier to see in dark mode */
+.changeTheme .sarch::placeholder,
+.changeTheme #taskInput::placeholder {
+    color: rgba(255, 255, 255, 0.5);
+}
+
+/* Ensure the input text itself is visible when typing in dark mode */
+.changeTheme #taskInput, 
+.changeTheme .sarch {
+    color: #ffffff;
+    background-color: rgba(0, 0, 0, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+}

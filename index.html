@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Productivity Dashboard</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
+</head>
+
+<body>
+
+    <header class="title">
+        <div id="greetingContainer" style="margin-bottom: 25px;">
+    <h1 id="userGreeting" style="font-size: 28px; margin-bottom: 5px;">Good Morning!</h1>
+    <p id="weatherInfo" style="color: #666; font-size: 14px;">☀️ Loading weather...</p>
+</div>
+        <div id="name">Productivity Dashboard</div>
+        
+
+        <div class="rightSection">
+            <input type="text" class="sarch" placeholder="Search by Name...">
+            <div id="dateTime">Date</div>
+            <button id="themeButton">Change Theme</button>
+
+
+
+        </div>
+    </header>
+    <div class="divider"></div>
+
+    <div class="firstBody">
+
+
+
+        <div class="sidebar">
+            <h3>Menu</h3>
+            <ul>
+                <li class="menu-item" data-target="all">Dashboard</li>
+                <li class="menu-item" data-target="Todo">To-Do</li>
+                <li class="menu-item" data-target="Notes">Notes</li>
+                <li class="menu-item" data-target="Pomodoro">Pomodoro</li>
+            </ul>
+
+        </div>
+        <div class="mainContaint">
+            <div class="card Todo">
+                <h2>To-Do List</h2>
+
+                <div class="goal-section" style="margin-bottom: 20px;">
+                    <div
+                        style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 5px;">
+                        <span style="font-size: 14px; font-weight: bold;">Daily Goal:</span>
+                        <input type="number" id="goalInput" value="5" min="1"
+                            style="width: 50px; border-radius: 4px; border: 1px solid #ccc; text-align: center;">
+                    </div>
+                    <div class="progress-container"
+                        style="background: #eee; border-radius: 10px; height: 12px; width: 100%; overflow: hidden;">
+                        <div id="progressBar"
+                            style="background: var(--header-bg); height: 100%; width: 0%; transition: width 0.4s ease;">
+                        </div>
+                    </div>
+                    <p id="goalStats" style="font-size: 12px; margin-top: 5px; color: #666;">0 of 5 tasks completed</p>
+                </div>
+
+
+                <div class="input-group">
+                   <div class="todo-input-container" style="display: flex; gap: 10px; margin-bottom: 20px;">
+    <input type="text" id="taskInput" placeholder="Add a new task...">
+    
+    <select id="priorityInput" style="padding: 10px; border-radius: 8px; border: 1px solid #ccc;">
+        <option value="low">Low</option>
+        <option value="medium" selected>Medium</option>
+        <option value="high">High</option>
+    </select>
+    
+    <button id="addTaskBtn">Add</button>
+</div>
+                </div>
+
+
+                
+                <ul id="taskList"></ul>
+            </div>
+            <div class="card Notes">
+                <h2>Notes</h2>
+                <textarea id="notesArea" placeholder="Write notes here..."></textarea>
+            </div>
+
+            <div class="card Pomodoro">
+                <h2>Pomodoro</h2>
+                <div class="timer-modes" style="display:flex; gap:10px; justify-content:center; margin-bottom:10px;">
+                    <button onclick="setTimer(25)">Work</button>
+                    <button onclick="setTimer(5)">Short Break</button>
+                </div>
+                <div class="timer" id="timer">25:00</div>
+                <div class="button-container">
+                    <button id="startBtn">Start</button>
+                    <button id="resetBtn">Reset</button>
+                </div>
+            </div>
+
+
+
+
+
+        </div>
+
+
+
+
+
+
+
+
+    </div>
+
+    <div class="divider"></div>
+
+
+
+
+
+
+
+
+</body>
+
+</html>
